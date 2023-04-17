@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundamentos JavaScript</title>
+</head>
+<body>
+    <h1>Fundamentos JavaScript</h1>
+    <script>
+        // funcion constructora:
+        function Animal (nombre, genero){
+            this.nombre = nombre;
+            this.genero = genero;
+
+            // this.sonar = function(){
+            //     console.log("Hago sonidos por que estoy vivo");
+            // }
+            // this.saludar = function(){
+            //     console.log(`Hola mi nombre es: ${this.nombre}.`);
+            // }
+            //NO ES LO IDEAL CREAR METODOS DENTRO DE LAS FUNCIONES PORQUE SE VAN
+            //A REPETIR O A CLONAR PARA CADA UNA DE NUESTRAS INSTANCIAS QUE VALLAMOS CREANDO
+            //LO MEJOR ES DEJARLOS POR FUERA SEÑALANDO QUE SON UN PROTOTIPO DE ESTA CLASE.
+        }
+        // y aqui es donde se  crean esos metodos para el prototipo Animal
+        console.log("PROTOTIPOS:");
+        Animal.prototype.sonar = function(){
+            console.log("Hago sonidos por que estoy vivo");
+        }
+        Animal.prototype.saludar = function(){
+            console.log(`Hola mi nombre es: ${this.nombre}.`);
+        }
+
+        let snoopy = new Animal("Snoopy", "Macho");
+        console.log(snoopy);
+        snoopy.sonar();
+        snoopy.saludar();
+
+        let lolaBunny = new Animal("Lola Bunnny", "Hembra");
+        console.log(lolaBunny);
+        lolaBunny.sonar();
+        lolaBunny.saludar();
+
+
+        console.log("------------------------------------------------------------------");
+        console.log("HERENCIA:");
+        //herencia PROTOTIPICA:
+        function Perro (nombre, genero, tamanio){
+            this.super = Animal;
+            this.super(nombre, genero);
+            this.tamanio = tamanio;
+        }
+
+        //perro esta heredando de animal:
+        Perro.prototype = new Animal;
+        Perro.prototype.constructor = Perro;
+
+        //sobreescritura del metodo del prototipo padre en el hijo:
+        Perro.prototype.sonar = function(){
+            console.log("Soy un perro y mi sonido es ladrido");
+        }
+        Perro.prototype.ladrar = function(){
+            console.log("Guauuuu Guauuuu Guauuusito");
+        }
+        
+        const firulais = new Perro("Firulais", "Macho", "Pequeño");
+        console.log(firulais);
+        firulais.ladrar();
+
+        console.log("------------------------------------------------------------------");
+        console.log("CLASES Y HERENCIA:");
+
+        class Roedor{
+            constructor(nombre, genero){
+                this.nombre = nombre;
+                this.genero = genero;
+            }
+            //Métodos:
+            sonar(){
+                console.log("Hago sonidos por que estoy vivo y soy un roedor");
+            }
+            saludar(){
+                console.log(`Hola me llamo ${this.nombre}`);
+            }
+        }
+
+        const mini = new Roedor("Mini", "Hembra");
+        console.log(mini);
+        mini.saludar();
+        mini.sonar();
+
+        const terminator = new Roedor("Terminator", "Macho");
+        console.log(terminator);
+        terminator.saludar();
+        terminator.sonar();
+
+        class Raton extends Roedor{
+            constructor(nombre, genero, tamanio, raza){
+                //con el método super(), se manda a llamar el constructor de la clase padre.
+                super(nombre, genero);
+                this.tamanio = tamanio;
+                this.raza = raza;
+            }
+
+            sonar(){
+                console.log("Soy un ratón y mi sonido es ñaca ñaca");
+            }
+
+            rumiar(){
+                console.log(`Me llamo ${this.nombre} y estoy rumiando queso`);
+            }
+
+            //Un metodo estático se puede ejecutar sin necesidad de instanciar la clase:
+            static queEres(){
+                console.log("Soy un Ratón que vive en las alcantarillas y que me gusta fastidiar a los humanos");
+            }
+
+            //los Setters y Getters son metodos especiales que nos permiten establecer
+            // y obtener los valores de atributos de nuestra clase..
+            get getRaza(){
+                return this.raza;
+            }
+            set setRaza(raza){
+                this.raza = raza;
+            }
+        }
+
+        const yerri = new Raton("Yerri", "Machito", "Pequeñito");
+        console.log(yerri);
+        yerri.rumiar();
+        yerri.sonar();
+        
+
+        console.log("------------------------------------------------------------------");
+        console.log("METODOS ESTATICOS GETTERS Y SETTERS:");
+
+        //aqui ejecutamos el metodo estatico sin necesidad de crear el objeto:
+        Raton.queEres();
+
+        console.log(yerri.getRaza);
+        yerri.setRaza = "Hamnster";
+        console.log(yerri.getRaza);
+
+
+        console.log("------------------------------------------------------------------");
+        console.log("OBJETO CONSOLE:");
+
+        console.log(console);
+        console.error("Esto es un error");
+        console.warn("Esto es un aviso");
+        console.info("Esto es un mensaje informativo");
+        console.log("Un registro de lo que ha pasado en nuestra aplicación");
+
+        let nombre = "Henry";
+        let apellido = "Corredor";
+        let edad = 32;
+
+        console.log(nombre);
+        console.log(apellido);
+        console.log(edad);
+        console.log(nombre, apellido, edad);
+        console.log(`Hola mi nombre es ${nombre} ${apellido}, y tengo ${edad} años de edad`);
+
+        //se pueden poner unos comodines para reemplazar los valores que le pasamos a la cadena de texto:
+        console.log(`Hola como estas? mi nombre es %s %s y tengo %d años...`);
+        console.log(`Hola como estas? mi nombre es %s %s y tengo %d años...`, nombre, apellido, edad);
+        
+        console.clear();// BORRA TODO LO QUE HAY EN CONSOLA, LA LIMPIA
+
+        console.log(window);
+        console.log(document);
+        console.dir(window);
+        console.dir(document);
+
+        //PARA CREAR COMO UN GRUPITO UNA DIVISION DE UN GRUPO:
+        console.group("Cursos dictados en el futuro por Henry Corredor");
+        console.log("1. Desarrollo de aplicaciones web");
+        console.log("2. JavaScript de 0 a experto");
+        console.log("3. Java de 0 a experto");
+        console.log("4. NodeJs de 0 a experto");
+        console.log("5. HTML y CSS de 0 a experto");
+        console.groupEnd();
+
+        console.groupCollapsed("Cursos dictados en el futuro por Henry Corredor");
+        console.log("1. Desarrollo de aplicaciones web");
+        console.log("2. JavaScript de 0 a experto");
+        console.log("3. Java de 0 a experto");
+        console.log("4. NodeJs de 0 a experto");
+        console.log("5. HTML y CSS de 0 a experto");
+        console.groupEnd();
+        console.clear();
+
+        console.log(console);
+        // para ordenar todas esas propiedades de console que arroja en la consola, organizarlas en una tabla:
+        console.table(Object.entries(console).sort());// table para crear la tabla, 
+        // entries para incluir todas las entradas del objeto console, y sort para organizar en orden alfabetico...
+        
+        const numeros = [1,2,3,4,5];
+        const vocales = ["A", "e", "I", "o", "U"];
+        console.table(numeros);
+        console.table(vocales);
+
+        const perro = {
+            nombre: "Rambo",
+            raza: "Chandoso",
+            color: "Amarillo pollito"
+        }
+
+        console.table(perro);
+        console.clear();
+
+        //para saber cuanto tiempo tarde en ejecutarse cierto codigo:
+        console.time("Tiempo que tarda:");
+
+        const arreglo = Array(1000);// 1000 es la cantidad de posiciones que quiero en mi arreglo para contar el tiempo
+
+        for (let i = 0; i < arreglo.length; i++){
+            arreglo[i] = i;
+        }
+
+        console.timeEnd("Tiempo que tarda:");
+        //console.log(arreglo);
+
+        //para saber cuantas veces se ejecuta un ciclo ejemplo:
+
+        for (let i = 0; i < 40; i++) {
+            console.count("Ciclo numero #"); // para contar cuantas veces se ejecuta el ciclo for.
+            console.log(i);
+        }
+        console.clear();
+
+        let x = 1;
+        let y = 2;
+        let pruebaXY = "Se espera que 'x' siempre sea menor que 'y'";
+        console.assert(x < y, {x, y, pruebaXY});// no muestra nada porque si es menor x
+
+        let z = 3;
+        let l = 2;
+        let pruebaZL = "Se espera que 'z' siempre sea menor que 'l'";
+        //console.assert(z < l, {z, l, pruebaZL});// muestra error porque z es mayor a L
+
+    </script> 
+</body>
+</html>

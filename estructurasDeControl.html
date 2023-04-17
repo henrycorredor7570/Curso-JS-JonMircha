@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundamentos JavaScript</title>
+</head>
+<body>
+    <h1>Fundamentos JavaScript</h1>
+    <script>
+        console.log("ESCTRUCTURAS DE CONTROL");
+        // if - else:
+        let edad = 20;
+        if(edad > 17 ){
+            console.log("Eres mayor de edad");
+        }else{
+            console.log("Eres menor de edad");
+        }
+
+        if(edad >= 17 ){
+            console.log("Eres mayor de edad");
+        }else{
+            console.log("Eres menor de edad");
+        }
+
+        /*
+        buenos dias (6 - 11)
+        buenas tardes (12 - 18)
+        buenas noches (19 - 23)
+        dejame dormir (0 - 5)
+        */
+        
+        let hora = 5;
+        if (hora >= 0 && hora < 6){
+            console.log("Dejame dormir");
+        }else if(hora >= 6 && hora < 12){
+            console.log("Buenos dias");
+        }else if(hora >= 12 && hora < 19){
+            console.log("Buenas tardes");
+        }else{
+            console.log("Buenas noches");
+        }
+
+        // Operador ternario: (condicion)? verdadero:falso;
+        console.log("OPERADOR TERNARIO:");
+        let eresMayor = (edad >= 18) ? "eres mayor de edad" : "eres menor de edad";
+        console.log(eresMayor);
+
+        /*switch - case
+        
+        domingo - 0
+        Lunes - 1
+        Martes - 2
+        Miercoles - 3
+        Jueves - 4
+        Viernes 5 
+        Sabado - 6
+        */
+
+        let dia = 5;
+        switch(dia){
+            case 0:
+                console.log("Domingo");
+            break;
+            case 1:
+                console.log("Lunes");
+            break;
+            case 2:
+                console.log("Martes");
+            break;
+            case 3:
+                console.log("Miercoles");
+                break;
+            case 4:
+                console.log("Jueves");
+                break;
+            case 5:
+                console.log("Viernes");
+                break;
+            case 6:
+                console.log("Sábado");
+                break;
+            default:
+                console.log("el Día no existe");
+                break;
+            }
+
+        //While:
+        let contador = 0;
+        while(contador < 10){
+            console.log("While", contador);
+            contador++;
+        }
+
+        let contador2 = 0;
+        do{
+            console.log("Do While", contador2);
+            contador2++;
+        }while(contador2 <= 10);
+
+        //FOR:
+        for (let i = 0; i <= 5; i++) {
+            console.log("For: ", i);            
+        }
+
+        let numeros = [10,20,30,40,50,60,70,80,90,100];
+        for (let i = 0; i < numeros.length; i++) {
+            console.log(numeros[i]);
+            
+        }
+
+        //for in 
+        let henry = {
+            nombre: "henry",
+            apellido: "corredor",
+            edad: 23
+        }
+
+        for (const propiedad in henry) {// se utiliza mas en objetos primitivos en js
+            console.log(`key: ${propiedad}, Value: ${henry[propiedad]}`);
+        }
+
+        for (const elemento of numeros) {// for of se puede utilizar en cualquier tipo de objeto iterable en js
+            console.log(elemento);
+        }
+
+        let cadena = "Hola mundo";
+
+        for (const valor of cadena) {
+            console.log(valor);
+        }
+    </script> 
+</body>
+</html>

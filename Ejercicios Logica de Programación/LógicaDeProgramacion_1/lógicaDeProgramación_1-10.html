@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lógica de Programación</title>
+</head>
+<body>
+    <h1>Lógica de Programación</h1>
+    <script>
+
+
+        //1) Programa una función que cuente el número de caracteres de una cadena de texto, pe. miFuncion("Hola Mundo") devolverá 10.
+        // function numeroDeCaracteres(cadena){
+        //     let suma;
+        //     for (let i = 0; i < cadena.length ; i++) {
+        //         suma = i + 1;
+        //     }
+        //     return suma
+        // }
+
+        // console.log(numeroDeCaracteres("Mi nombre es Henry Corredor González"));
+
+        // function numeroCaracteres(cadenita){
+        //     return cadenita.length;
+        // };
+        // console.log(numeroCaracteres("Hola Mundo"));
+
+        // function numeroCaracteres(cadena = ""){
+        //     if(!cadena){
+        //         console.warn("No ingresaste ningún texto");
+        //     }else{
+        //         console.info(`La cadena "${cadena}" tiene ${cadena.length} caracteres`);
+        //     }
+        // }
+        
+        //Mismo ejercicio en una sola Linea con Arrown Function:
+        const numeroCaracteres = (cadena = "") => (!cadena) ? console.warn("No ingresaste ningún texto") : console.info(`La cadena "${cadena}" tiene ${cadena.length} caracteres`);
+
+        //numeroCaracteres();
+        //numeroCaracteres("My name is Jhonatan Mircha")
+
+
+
+
+
+
+        //2) Programa una función que te devuelva el texto recortado según el número de caracteres indicados, pe. miFuncion("Hola Mundo", 4) devolverá "Hola".
+        // function textoRecortado(cadena, num){
+        //     var nuevaCadena = "";
+        //     for (let i = 0; i < num; i++) {
+        //         nuevaCadena += cadena[i];
+        //     }
+        //     return nuevaCadena;
+        // }
+        const textoRecortado = (cadena = "", longitud = undefined) => (!cadena) ? console.warn("No existe Cadena"): console.info(`la cadena es: "${cadena}", y recortada queda: "${cadena.slice(0, longitud)}"`);    
+        //textoRecortado("Angela Montaña", 11);
+        //textoRecortado();
+    
+
+
+
+
+
+        //3) Programa una función que dada una String te devuelva un Array de textos separados por cierto
+         //caracter, pe. miFuncion('hola que tal', ' ') devolverá ['hola', 'que', 'tal'].
+
+        //  function retornaArray(texto, caracter){
+        //     return texto.split(caracter)
+        //  }
+
+        const retornaArray = (cadena = "", separador = undefined) => (!cadena) ? console.warn("La cadena no existe") : (separador === undefined) ? console.warn("No ingresaste un caracter separador")
+                            : console.info(cadena.split(separador)); 
+            
+        // retornaArray("Hola que tal", " ");
+        // retornaArray();
+        // retornaArray("Hola mundo como estas");
+
+
+
+
+
+
+         //4) Programa una función que repita un texto X veces, pe. miFuncion('Hola Mundo', 3) devolverá 
+         //Hola Mundo Hola Mundo Hola Mundo.
+
+        //  function repiteTexto(texto, num){
+        //     let textos = "";
+        //     for (let i = 0; i < num; i++) {
+        //         textos += texto;
+        //     }
+        //     return textos;
+        //  }
+
+        const repiteTexto = (texto = "", veces = undefined) => {
+            if(!texto) return console.warn("No ingresaste un texto");
+            if(veces === undefined) return console.warn("No ingresaste el numero de veces a repetir el texto");
+            if(veces === 0) return console.error("El numero de veces no puede ser 0");
+            if(Math.sign(veces) === -1) return console.error("El numero de veces no puede ser negativo");
+
+            for(var i = 1; i <= veces; i++) console.info(`${texto}, ${i}`);
+        }
+
+        repiteTexto("Hola BB", 8);
+        repiteTexto("Hola BB", 0);
+        repiteTexto("Hola BB", -15);
+        repiteTexto("Hola BB");
+        repiteTexto();
+        repiteTexto("", 8);
+
+
+        //  console.log(repiteTexto("halo2 ", 2));
+
+
+
+    </script>
+</body>
+</html>
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lógica de Programación</title>
+</head>
+<body>
+    <h1>Lógica de Programación</h1>
+    <script>
+      
+    </script>
+</body>
+</html> -->

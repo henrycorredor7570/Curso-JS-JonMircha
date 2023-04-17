@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundamentos JavaScript</title>
+</head>
+<body>
+    <h1>Fundamentos JavaScript</h1>
+    <script>
+        //FUNCIONES:
+        console.log("FUNCIONES: ");
+
+        // funcion declarada:
+        function estoEsUnaFuncion(){
+            console.log("Uno");
+            console.log("Dos");
+            console.log("Tres");
+        }
+
+        //Invocacion de funciones:
+        estoEsUnaFuncion();
+
+        function unaFuncioQueDevuelveValor(){
+            return "La funcion ha retornado una cadena de texto";
+        }
+
+        console.log(unaFuncioQueDevuelveValor());
+
+        let valorDeFuncion = unaFuncioQueDevuelveValor();
+        console.log(valorDeFuncion);
+
+
+        //Funcion que reciba valores:
+        function saludar(nombre = "Desconocido", edad = 0){// se le asignan valores undefined para cuando no le pasan los argumentos.
+            console.log(`Hola mi nombre es ${nombre} y tengo ${edad} años`);
+        }
+        
+        saludar("Henry", 32);
+        saludar();
+
+        //FUNCIONES DECLARADAS:
+        funcionDeclarada();// se hizo el llamado a la funcion antes de declararla, se puede llamar en cualquier parte del codigo
+        
+        function funcionDeclarada(){
+            console.log("Esto es una funcion declarada, puede invocarse en cualquier parte de nuestro codigo ");
+        }
+
+        
+        funcionDeclarada();
+        //FUNCIONES EXPRESADAS:
+        // asignar una funcion a una variable:
+        //funcionExpresada();
+        const funcionExpresada = function(){// se conoce como funcion anonima.
+            console.log(`Esto es una funcion expresada, es decir una funcion que se le ha 
+            asignado como valor a una variable, si invocamos esta funcion antes de su definicion
+             JS nos dira: caught ReferenceError: Cannot access 'funcionExpresada' before 
+             initialization`);
+        }
+
+        funcionExpresada();
+
+        console.log("*---------------------------------------------------------------------------------*")
+        console.log("ARREGLOS");
+     
+        //ARREGLOS:
+        const a = [];
+        const b = [ 1, true, "hola", ["A", "B", "C", [1, 4, 3, 2]]]; 
+        console.log(a);
+        console.log(b);
+        console.log(b[3]);
+        console.log(b[3][1]);
+       // console.log(b[3][3][1]);
+        console.log("esta es la longitud del arreglo: ", b.length);
+        console.log(b[2]);
+
+        const c = Array.of("x", "Y", "Z", 1, 3, 5);
+        console.log(c);
+
+        const d  = Array(20).fill(23);
+        console.log(d);
+
+        const colores = ["Rojo", "Verde", "Azul"];
+        console.log(colores);
+
+        colores.push("negro");// pone el elemento al final de array
+        console.log(colores);
+
+        colores.pop();
+        console.log(colores);// elimina el ultimo elemento
+
+        //Metodo forEach()
+        colores.forEach(function(el, index){
+            console.log(`<li ID = "${index}" > ${el} </li>`);
+        });
+
+        console.log("*---------------------------------------------------------------------------------*")
+        console.log("OBJETOS");
+     
+        //OBJETOS:
+        const henry = {
+            nombre: "Henry",
+            apellido: "Corredor",
+            edad: 32,
+            pasatiempos: ["correr", "Bailar", "Hacer ejercicio", "dar clases"],
+            soltero: true,
+            contacto: {
+                email: "henry.corredor7570@gmail.com",
+                twitter: "Henrysito1234",
+                celular: 3246800338
+            },
+            saludar: function(){
+                console.log("Hola ;)");
+            },
+            decirMiNombre: function(){
+                console.log(`Hola me llamo ${this.nombre} ${this.apellido} y tengo ${this.edad} años 
+                y me puedes seguir como ${this.contacto.twitter} en Twitter ;)`)
+            }
+        }
+        console.log(henry);
+        console.log(henry["nombre"]);
+        console.log(henry["apellido"]);
+        console.log(henry.nombre);
+        console.log(henry.apellido);
+        console.log(henry.pasatiempos);
+        console.log(henry.soltero);
+        console.log(henry.pasatiempos[2]);
+        console.log(henry.contacto.celular);
+
+        henry.saludar();
+        henry.decirMiNombre();
+
+        console.log(Object.keys(henry)); // me arroja un arreglo listado con las propiedades(keys) de mi objeto henry
+        console.log(Object.values(henry)); // me enlista lus valores(values) de las propiedades de mi objeto henry
+        console.log(henry.hasOwnProperty("soltero"));// me permite saber si un objeto tiene determinada propiedad
+        console.log(henry.contacto.hasOwnProperty("email"));
+
+    </script> 
+</body>
+</html>

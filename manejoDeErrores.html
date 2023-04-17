@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundamentos JavaScript</title>
+</head>
+<body>
+    <h1>Fundamentos JavaScript</h1>
+    <script>
+        console.log("CAPTURA DE ERRORES CON TRY CATCH");
+        "CAPTURA DE ERRORES CON TRY CATCH"
+        //"CAPTURA DE ERRORES CON TRY CATCH"
+        try {
+            console.log("En el try se agrega el codigo a evaluar");
+            variableQueNoExiste;
+            console.log("Segundo mensaje en el Try");
+        } catch (error) {
+            console.log("Catch captura cualquier error surgido o lanzado en el try");
+            console.log(error);// aqui se muestra el error exactamente que hay en el codigo
+        } finally{
+            console.log("El bloque finally se ejecutara siempre al final de un bloque try-catch");
+        }
+
+        // personalizar nuestros propios mensajes:
+        console.log("MENSAJE PERSONALIZADO");
+        try {
+            let numero = 9;
+            if (isNaN(numero)){
+                throw new Error("El carácter introducido no es un número")
+            }
+            console.log(numero * numero);
+        } catch (error) {
+            console.log(error);
+        }
+
+        try {
+            let miNumero = "hola";
+            if(isNaN(miNumero)){
+                throw new Error("Esto es un ERROR grandisimo")
+            }
+            console.log(miNumero + miNumero);
+        } catch (error) {
+            console.log(error);
+        }
+
+        console.log("***************************************************************************");
+        console.log("BREAK Y CONTINUE:");
+        //break y continue:
+        console.log("uso del break");
+        const numeros = [1,2,3,4,5,6,7,8,9,0]
+        for (let i = 0; i < numeros.length; i++) {
+            if (i === 5){
+                break; // corta el codigo en esta condicion
+            }
+            console.log(numeros[i]);
+        }
+
+        console.log("uso del continue");
+        for (let i = 0; i < numeros.length; i++) {
+            if(i === 5){
+                continue;//con continue solamente corta por una vez el cilo y lo vuelve a retomar despues
+                // en este caso corto la posicion 5 del arreglo que es = 6 por eso no se imprime.
+            }
+            console.log(numeros[i]);
+        }
+
+        console.log("ejercicio imprimir el numero cada dos posiciones en el arreglo");
+
+        const miArreglo = [0,1,1,2,3,5,8,13,21,34,55,89,144]
+        //                 0,1,2,3,4,5,6, 7, 8, 9,10,11, 12
+
+        for (let i = -1; i < miArreglo.length; i++) {
+                i = i + 1;
+                console.log(miArreglo[i]);            
+        }
+        
+        console.log(miArreglo.length);
+
+        console.log("DESTRUCTURACION:")
+
+        console.log("SIN DESTRUCTURACION:")
+        const arreglito = [1,2,3,4];
+
+        let uno = arreglito[0];
+        let dos = arreglito[1];
+        let tres = arreglito[2];
+        let cuatro = arreglito[3];
+
+        console.log(uno, dos, tres, cuatro);
+
+        console.log("CON DESTRUCTURACION:")
+        const [one, two, three, four] = arreglito;// se crean las variables dinamicamente dentro del arreglo y arreglito se le asigna a ese arreglo
+        console.log(one, two, three, four);
+
+        //igual pasa con los objetos ejemplo:
+
+        const persona = {
+            nombre: "Henry",
+            apellido: "Corredor",
+            edad: 32
+        }
+
+        const {nombre, apellido, edad} = persona;
+        console.log(nombre, apellido, edad);// para que la destructuracion funcione en los objetos es 
+        //muy importante que la variable que se crea sea el mismo nombre de la propiedad
+
+        console.log("OBJETOS LITERALES:")
+
+        let nombre1 = "Firulais";
+        let edad1 = 15;
+        const perro = {
+            nombre1: nombre1,
+            edad1: edad1,
+            ladrar : function() {
+                console.log("Guauuu guauuuu!!!");
+            }
+        }
+
+        console.log(perro);
+        perro.ladrar();
+
+        const dog = {
+            nombre1,
+            edad1, 
+            raza: "callejero",
+            ladrar1(){
+                console.log("Guauuu guauuuuuu guauuuu!!!");
+            }
+        }
+
+        console.log(dog);
+        dog.ladrar1();
+
+        console.log("PARAMETROS REST & OPERADOR SPREAD:");
+        // parametros rest:
+        function sumar(a, b, ...c){
+            let resultado = a + b;
+
+            c.forEach(function(n){
+                resultado += n;
+            });
+            return resultado;
+        }
+
+        console.log(sumar(1,2));
+        console.log(sumar(1,2,3));// del 3 en adelante es el valor que recibe el el parametro rest
+        console.log(sumar(1,2,3,4));
+        console.log(sumar(1,2,3,4,5));
+        console.log(sumar(1,2,3,4,5,6));
+
+        const arr1 = [1,2,3,4,5];
+        const arr2 = [6,7,8,9,0];
+
+        console.log(arr1, arr2);
+        console.log(arr1 + arr2);// no se pueden mezclar asi los dos arreglos
+
+        const arr3 = [arr1, arr2];
+        console.log(arr3);// tampoco se puede asi porque quedan los dos arreglos dentro de uno solo cada uno independiente
+        
+        const arr4 = [...arr1, ...arr2];
+        console.log(arr4); // asi ya se pueden mezclar los dos arreglos con la funcion spred operator que son los ...
+        
+        console.log("ARROW FUNCTIONS: O FUNCIONES FLECHA");
+
+        let saludar = function(){
+            console.log("Hola");
+        }
+        saludar();
+
+        //la arrow function o funcion flecha
+        let saludar1 = () => console.log("Hola con funcion flecha");
+        // se elimina la palabra function y se pone una flecha desues de los parentesis
+        // se pueden tambien eliminar los corchetes si la funcion esta declarada en una sola linea.
+    
+        saludar1();
+
+        let saludar2 = (nombre) => console.log(`Hola ${nombre}, como estas?`);
+        //let saludar2 = nombre => console.log(`Hola ${nombre}, como estas?`); // cuando una funcion flecha
+        //recibe solo un parametro ya no es necesario ponerle los parentesis al parametro.
+        saludar2("Alejo");
+
+        // const sumar = function(a,b){
+        //     return a + b;
+        // }// ESTO ES LO MISMO QUE LO SIGUIENTE:
+        const sumar1 = (a,b) => a + b; // tambien se puede anular el return en la funcion flecha;
+
+        console.log(sumar1(3,4));
+
+        // cuando tienen varias lineas de codigo:
+        const funcionDeVariasLineas = () =>{
+            console.log("Linea uno");
+            console.log("Linea dos");
+            console.log("Linea tres");
+        }
+
+        funcionDeVariasLineas();
+
+        const nuevoArreglo = [2,4,6,8,10];
+
+        nuevoArreglo.forEach(function(elemento, index) {
+            console.log(`El elemento ${elemento} esta en la posicion: ${index}`);
+        });
+
+        //eso mismo con arrow function:
+        nuevoArreglo.forEach((el, indice) => console.log(`El elemento ${el} se encuentra en la posicion ${indice}`));
+
+        
+    </script> 
+</body>
+</html>
