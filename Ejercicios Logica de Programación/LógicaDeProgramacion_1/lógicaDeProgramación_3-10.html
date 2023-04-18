@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lógica de Programación</title>
+</head>
+<body>
+    <h1>Lógica de Programación</h1>
+    <script>
+
+    // 9) Programa una función que obtenga un numero aleatorio entre 501 y 600.
+
+    // SOLUCION (HENRY):
+        // function numeroAleatorio(){
+        //     let min = 501;
+        //     let max = 600;
+        //     return Math.round(Math.random() * (max - min) + min);
+        // }
+
+        // SOLUCION PROFESOR (JON MIRCHA):
+        const numeroAleatorio = () => console.info(Math.round((Math.random() * 100) + 500));
+
+        //console.log(numeroAleatorio());
+
+
+
+
+
+
+    // 10) Programa una función que reciba un número y evalúe si es capicúa o no (que se lee igual en un sentido que en otro), pe. miFuncion(2002) devolverá true.
+
+    // SOLUCION (HENRY):
+        // function esCapicua(numero){
+        //     if(!numero) return console.warn("No ingresaste un número");
+
+        //     let nuevoNumero = numero.toString();
+        //     let newnumber = nuevoNumero.split("").reverse().join("");
+        //     let entero = parseInt(newnumber);
+
+        //     if(entero === numero) return true;
+        //     else return false;
+        // }
+
+        // SOLUCION PROFESOR (JON MIRCHA):
+        const esCapicua = (numero = 0) =>{
+            if(!numero) return console.warn("No ingresaste un número");
+            if(typeof numero !== "number") return console.error(`El valor "${numero}" ingresado; No es un número`);
+            
+            numero = numero.toString();
+            let alReves = numero.split("").reverse().join("");
+
+            return (numero === alReves)
+                ? console.info(`Si es Capicua. Numero original ${numero}, Numero al reves ${alReves}`)
+                : console.info(`No es Capicual. Numero Original ${numero}, Numero al reves ${alReves}`);
+        }
+
+        // esCapicua();
+        // esCapicua("2234")
+        // esCapicua(3456543);
+
+
+
+
+    
+    // 11) Programa una función que calcule el factorial de un número (El factorial de un entero positivo n, se define como el producto 
+    //     de todos los números enteros positivos desde 1 hasta n), pe. miFuncion(5) devolverá 120.
+
+      // SOLUCION (HENRY):
+        // function factorial(numero){
+        //     if(numero === 0 || numero === 1) return 1; 
+        //     return numero * factorial(numero - 1);
+        // }
+        
+
+      // SOLUCION PROFESOR (JON MIRCHA):
+            const factorial = (numero = undefined) =>{
+                if(numero === undefined) return console.warn("No ingresaste un numero");
+
+                if(typeof numero !== "number") return console.error("El valor ingresado NO es un numero")
+
+                if(numero === 0) return console.error("El numero no puede ser 0");
+
+                if(Math.sign(numero) === -1) return console.warn("El numero no puede ser negativo");
+
+                let factor = 1;
+                for (let i = numero; i > 1; i--){
+                    factor *= i;
+                }
+
+                return console.info(`El factorial de ${numero} es : ${factor}`);
+            }
+            console.log(factorial());
+            console.log(factorial("22"));
+            console.log(factorial(0));
+            console.log(factorial(-24));
+            console.log(factorial(8));
+            console.log(factorial(5));
+    </script>
+</body>
+</html>

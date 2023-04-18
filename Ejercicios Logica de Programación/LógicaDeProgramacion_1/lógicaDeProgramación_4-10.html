@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lógica de Programación</title>
+</head>
+<body>
+    <h1>Lógica de Programación</h1>
+    <script>
+        // 12) Programa una función que determine si un número es primo (aquel que solo es divisible por sí mismo y 1) o no, pe. miFuncion(7) devolverá true.
+        // SOLUCION DE HENRY:
+        // function numeroPrimo(num){
+        //     let divisible = false;
+        //     for (let i = 2; i < numero; i++) {
+        //            if((numero % i) === 0){
+        //             divisible = true;
+        //            break; 
+        //            }
+                                      
+        //         }
+        //         return (divisible) ? console.info("NO es PRIMO") : console.info("SI es PRIMO");
+        // }
+        
+        // SOLUCION DEL PROFESOR JON MIRCHA:
+            const numeroPrimo = (numero = undefined) =>{
+                if(numero === undefined) return console.warn("No ingresaste un numero");
+                if(typeof numero !== "number") return console.error("El numero ingresado no es un numero");
+                if(numero === 0) return console.warn("El numero no puede ser 0");
+                if(numero === 1) return console.warn("El numero no puede ser 1");
+                if(Math.sign(numero) === -1) return console.error("El numero no puede ser negativo");
+
+                let divisible = false;
+                for (let i = 2; i < numero; i++) {
+                   if((numero % i) === 0){
+                    divisible = true;
+                   break; 
+                   }
+                                      
+                }
+                return (divisible)
+                ? console.info("NO es número PRIMO")
+                : console.info("SI es número PRIMO");
+            }
+
+        // numeroPrimo(23);
+
+        // 13) Programa una función que determine si un número es par o impar, pe. miFuncion(29) devolverá Impar.
+        // SOLUCION DE HENRY:
+        //const parOImpar = (numero) => (numero % 2 === 0) ? console.info("Es número PAR") : console.info("Es número IMPAR");
+
+       
+
+        // SOLUCION DEL PROFESOR JON MIRCHA:
+            const parOImpar = (numero = undefined) =>{
+                if(numero === undefined) return console.warn("No inmgresaste un numero");
+                if(typeof numero !== "number") return console.info("El valor ingresado No es un número");
+
+                return (numero % 2 === 0)
+                    ? console.info(`El número ${numero} es un número Par`)
+                    : console.info(`El número ${numero} es un número IMPAR`);
+            }
+        // parOImpar();
+        // parOImpar(66);
+        // parOImpar(23);
+
+        // 14) Programa una función para convertir grados Celsius a Fahrenheit y viceversa, pe. miFuncion(0,"C") devolverá 32°F.
+        // SOLUCION DE HENRY:
+        // function grados(numero, grados){
+        //     if(!numero) return console.warn("No ingresaste un numero de grados");
+        //     if(!grados) return console.warn("No ingresaste los grados a evaluar");
+        //     if(grados !== "F" && grados !== "C") return console.error("VALOR INVALIDO: INGRESA 'F' ó 'C'");
+
+        //     if (grados === "C"){
+        //         resultado = (numero * 9 / 5) + 32
+        //         return console.log(`${resultado} °F`);
+        //     }
+        //     if(grados === "F"){
+        //         resultado = (numero - 32) * 5/9;
+        //         return console.log(`${resultado} °C`)
+        //     }
+        // }
+
+
+        // SOLUCION DEL PROFESOR JON MIRCHA:
+             const grados = (grados = undefined, unidad = undefined) =>{
+                if(grados === undefined) return console.warn("No ingresaste grados a convertir");
+                if(typeof grados !== "number") return console.warn(`El valor ${grados} no es un número`);
+                if(unidad === undefined) return console.warn("No ingresaste el tipo de grado a convertir");
+                if(typeof unidad !== "string") return console.warn(`El valor ${unidad} no es una cadena de texto`);
+                if(unidad.length !== 1 || !/(C|F)/.test(unidad)) return console.warn("Valor de unidad no reconocido");
+                
+                if(unidad === "C"){
+                    return console.info(`${grados}°C = ${Math.round((grados * (9/5)) + 32)}°F`);
+                }else if(unidad === "F"){
+                    return console.info(`${grados}°F = ${Math.round(((grados - 32) * (5/9)))}°C`);
+                }
+            }
+
+        grados(100, "F");
+
+
+
+    </script>
+</body>
+</html>

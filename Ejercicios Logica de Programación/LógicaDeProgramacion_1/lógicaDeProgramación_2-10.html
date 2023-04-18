@@ -9,12 +9,17 @@
 <body>
     <h1>Lógica de Programación</h1>
     <script>
+
+        
         //5) Programa una función que invierta las palabras de una cadena de texto, pe. miFuncion("Hola Mundo") devolverá "odnuM aloH".
+        
+        // SOLUCION (HENRY):
         // function invertirTexto(cadena){
         //     let nuevaCadena = cadena.split("").reverse().join("");
         //     console.log(nuevaCadena);
         // }
-
+        
+        // SOLUCION PROFESOR (JON MIRCHA):
         const invertirTexto = (cadena = "") => (!cadena) ? console.warn("No ingresaste ningún texto") : console.info(`La cadena ingresada es "${cadena}" y al reves se lee asi: ${cadena.split("").reverse().join("")}`);
 
         //invertirTexto("Hola Mundo");
@@ -23,6 +28,8 @@
 
 
         //6) Programa una función para contar el número de veces que se repite una palabra en un texto largo, pe. miFuncion("hola mundo adios mundo", "mundo") devolverá 2.
+
+        // SOLUCION (HENRY):
         // function repitePalabra (texto, palabra){
         //     contador = 0;
         //     texto2 = texto.split(" ");
@@ -35,6 +42,7 @@
         //     return contador;
         //}
 
+        // SOLUCION PROFESOR (JON MIRCHA):
         const repitePalabra = (cadena = "", palabra = "") =>{
             if(!cadena) return console.warn("No ingresaste la cadena de texto");
             if(!palabra) return console.warn("No ingresaste la palabra a buscar");
@@ -49,38 +57,73 @@
                     contador++;
                 }
             }
-            return console.info(`La palabra ${palabra} se repite ${contador} veces`);
+            return console.info(` En la frase "${cadena }"...La palabra ${palabra} se repite ${contador} veces`);
         }
 
-        repitePalabra();
-        repitePalabra("", "mi")
-        repitePalabra("mi");
-        repitePalabra("mi cadena esta llena de micaracteres en mi arreglomi", "mi");
+        // repitePalabra();
+        // repitePalabra("", "mi")
+        // repitePalabra("mi");
+        // repitePalabra("mi cadena esta llena de micaracteres en mi arreglomi", "mi");
+
 
 
 
         //7) Programa una función que valide si una palabra o frase dada, es un palíndromo (que se lee igual en un sentido que en otro), pe. mifuncion("Salas") devolverá true.
-        function esPalindromo(texto){ 
-            texto2 = texto.split("").reverse().join("");
 
-            if(texto2.toLowerCase() === texto.toLowerCase()){
-                return true
-            }else{
-                return false
-            }
-        //     texto3 = texto2.join("");
-             //console.log(texto2);
-        //     console.log(texto3);
+        // SOLUCION (HENRY):
+        // function esPalindromo(texto){ 
+        //     texto2 = texto.split("").reverse().join("");
+
+        //     if(texto2.toLowerCase() === texto.toLowerCase()){
+        //         return true
+        //     }else{
+        //         return false
+        //     }
+        // }
+
+        // SOLUCION PROFESOR (JON MIRCHA):
+        const esPalindromo = (cadena = "") =>{
+            if (!cadena) return console.warn("No ingresaste una cadena a evaluar");
+            
+            cadena = cadena.toLowerCase();
+            let alReves = cadena.split("").reverse().join("");
+            return (cadena === alReves) ? console.info(`Si es Palindromo: - Palabra Original: ${cadena}, - Palabra al reves: ${alReves}`)
+                                        : console.info(`No es Palindromo: - Palabra Original: ${cadena}, - Palabra al reves: ${alReves}`)
         }
-
-        //console.log(esPalindromo("Alacatalanabanalatacala"));
+        // esPalindromo("");
+        // esPalindromo("Alacatalanabanalatacala");//Alacatalanabanalatacala
+        // esPalindromo("HOLA MUNDO");
+        // esPalindromo("Salas");
+        
 
 
 
 
         //8) Programa una función que elimine cierto patrón de caracteres de un texto dado, pe. miFuncion("xyz1, xyz2, xyz3, xyz4 y xyz5", "xyz") devolverá  "1, 2, 3, 4 y 5.
 
+        // SOLUCION (HENRY):
+        // function eliminarCaracteres(texto, eliminar){
+        //     nuevaCadena = texto.replaceAll(eliminar, "");// metodo que sirve para eliminar caracteres de una cadena de texto
+        //     return nuevaCadena
+        // }
+        //console.log(eliminarCaracteres("Hola esta es una cadena de texto de prueba y estamos combrobando si funciona bien", "esta"));
 
+
+
+        // SOLUCION PROFESOR (JON MIRCHA):
+        const eliminarCaracteres = (texto = "", patron = "") =>
+        (!texto)
+            ? console.warn("No ingresaste el texto a evaluar")
+            : (!patron)
+                ? console.warn("No ingresaste un patron de caracteres a eliminar")
+                : console.info(texto.replace(new RegExp(patron, "ig"), ""));//i = no diferencia si son mayusculas o minusculas en la regular expresion
+                                                                            //g = es para que siga evaluando la cadena que no se quede solo eliminando la primer coincidencia
+
+        eliminarCaracteres();
+        eliminarCaracteres("xyz1, xyz2, xyz3, xyz4 y xyz5");
+        eliminarCaracteres("xyz1, xyz2, xyz3, xyz4 y xyz5", "yz");
+        eliminarCaracteres("metodo para eliminar caracteres de una cadena de texto", "o");
+        eliminarCaracteres("Tambien puede, con las expresiones regulares; dentro del (parametro) siguiente a evaluar solo eliminar las letras de la a a la z por ejemplo:", "[a-z]");
     </script>
 </body>
 </html>

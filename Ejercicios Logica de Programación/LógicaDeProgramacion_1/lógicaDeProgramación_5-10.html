@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lógica de Programación</title>
+</head>
+<body>
+    <h1>Lógica de Programación</h1>
+    <script>
+    //   15) Programa una función para convertir números de base binaria a decimal y viceversa,
+    //  pe. miFuncion(100,2) devolverá 4 base 10.
+    // SOLUCION HENRY:
+/*     function binarioDecimal(binario, decimal){
+        //para binario a decimal:
+        let nuevoBinario = binario.toString().split("").reverse().join("");
+        let suma = 0;
+        for(let i = 0; i < nuevoBinario.length; i++){
+            suma += nuevoBinario[i] * 2 ** i;
+        }
+        // return console.log(suma); 
+        // para decimal a binario:
+        let binario2 = "";
+        while(decimal > 0){
+            let resul = decimal % 2;
+            decimal = Math.floor(decimal / 2);
+            binario2 = resul + binario2;
+        }
+
+        return console.log(`${suma} base ${parseInt(binario2)}`);
+    } */
+    
+    // SOLUCION JON MIRCHA:
+    const binarioDecimal = (numero = undefined, base = undefined) =>{
+        if(numero === undefined) return console.warn("No ingresaste un valor binario");
+        if(typeof numero !== "number") return console.error(`El valor "${numero}" ingresado NO es un número corrigelo por favor`);
+        if(base === undefined) return console.warn("No ingresaste el valor decimal");
+        if(typeof base !== "number") return console.error(`El valor "${base} ingresado NO es un número por favor corrigelo"`);
+
+        if(base === 2){
+            return console.info(`${numero} base ${base} = ${parseInt(numero,base)} base 10`);
+        }else if(base === 10){
+            return console.info(`${numero} base ${base} = ${numero.toString(2)} base 2`);
+        }else{
+            return console.error("El tipo de base a convertir NO es válido")
+        }
+    }
+
+/*     binarioDecimal();
+    binarioDecimal(101);
+    binarioDecimal("34", 2);
+    binarioDecimal(101, "er");
+    binarioDecimal(1110010, 2);
+    binarioDecimal(4, 10);
+    binarioDecimal(114, 10); */
+
+
+
+
+
+    // 16) Programa una función que devuelva el monto final después de aplicar un descuento a una cantidad dada, pe. miFuncion(1000, 20) devolverá 800.
+        // SOLUCION HENRY:
+   /*      function descuento(valorTotal, porcentaje){
+            resultado = valorTotal * (porcentaje/100);
+            resultado = valorTotal - resultado; 
+            console.log(resultado) 
+        }
+ */
+        // SOLUCION PROFESOR JON MIRCHA:
+        const descuento = (monto = undefined, descuento = 0)=>{
+            if(monto === undefined) return console.warn("NO ingresaste el monto");
+            if(typeof monto !== "number") return console.error(`El valor ${monto} ingresado NO es un número`);
+            if(monto === 0) return console.warn("El valor del monto no puede ser 0");
+            if(Math.sign(monto) === -1) return console.error("El monto no puede ser negativo");
+            if(typeof descuento !== "number") return console.error(`El valor ${descuento} NO es un número`);
+            if(Math.sign(descuento) === -1) return console.error("El descuento no puede ser un valor negativo");
+
+            return console.info(`$${monto} - ${descuento}% = $${monto-((monto * descuento)/100)}`);
+
+        }
+/* 
+        descuento();
+        descuento("20");
+        descuento(0);
+        descuento(-10);
+        descuento(200,"29");
+        descuento(200);
+        descuento(200,10);
+        descuento(1000,10); */
+
+
+
+
+
+       
+    // 17) Programa una función que dada una fecha válida determine cuantos años han pasado hasta el día de hoy, 
+    //pe. miFuncion(new Date(1984,4,23)) devolverá 35 años (en 2020).
+        // SOLUCION HENRY:
+    /*     function fechaValida(fecha){
+            let fechaActual = new Date();
+
+            //console.log(fechaActual)
+            let fechaFinal= fechaActual.getFullYear() - fecha.getFullYear();
+            console.info(`${fechaFinal} años`);
+        }
+ */
+        // SOLUCION PROFESOR JON MIRCHA:
+        const fechaValida = (fecha = undefined)=>{
+            if(fecha === undefined) return console.warn("NO ingresaste una fecha");
+            if(!(fecha instanceof Date)) return console.error("El valor que ingresaste NO es una fecha valida");
+
+            let hoyMenosFecha = new Date().getTime() - fecha.getTime();
+            let aniosEnMs = 1000 * 60 * 60 * 24 * 365;
+            aniosHumanos = Math.floor(hoyMenosFecha / aniosEnMs);
+
+            return (Math.sign(aniosHumanos) === -1)
+                ? console.info(`Faltan ${Math.abs(aniosHumanos)} años para el ${fecha.getFullYear()}.`)
+                : (Math.sign(aniosHumanos) === 1)
+                    ? console.info(`Han pasado ${aniosHumanos} años, desde ${fecha.getFullYear()}.`)
+                    : console.info(`Estamos en el año actual ${fecha.getFullYear()}.`)
+        }
+
+        fechaValida();
+        fechaValida({});
+        fechaValida(false);
+        fechaValida(new Date());
+        fechaValida(new Date(1900,2,10));
+        fechaValida(new Date(1884,4,10));
+        fechaValida(new Date(2084,4,10));
+
+
+    </script>
+</body>
+</html>
