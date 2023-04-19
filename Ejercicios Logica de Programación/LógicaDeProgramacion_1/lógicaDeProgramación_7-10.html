@@ -13,17 +13,38 @@
         // 21) Programa una función que dado un array numérico devuelve otro array con los números 
         // elevados al cuadrado, pe. mi_funcion([1, 4, 5]) devolverá [1, 16, 25].
         // SOLUCION HENRY:
-        const arrayElevado = (array)=>{
-            nuevoArray = [];
+      /*   const arrayElevado = (array)=>{
+            let nuevoArray = [];
             for(let i = 0; i < array.length; i++){
                 nuevoArray.push(array[i]**2);
             }
             return console.info(nuevoArray);
-        }        
+        }      */   
 
-        arrayElevado([2,4,6,8,5]);
-        
         // SOLUCION JON MIRCHA:
+        const arrayElevado = (arr = undefined)=>{
+            if(arr === undefined) return console.warn("No ingresaste ningun valor");
+            if(!(arr instanceof Array)) return console.error("El valor que ingresaste no es un arreglo");
+            if(arr.length === 0) return  console.error("El arreglo esta vacio");
+            
+            for (const num of arr) {
+                if(typeof num !== "number") return console.error(`El valor ${num} NO es un número`);
+            }
+
+            const newArr = arr.map(elemento => elemento * elemento);
+
+            return console.info(`Arreglo original ${arr}; VS mi nuevo arreglo elevado al cuadrado ${newArr}`);
+        }
+
+   /*      arrayElevado();
+        arrayElevado(true);
+        arrayElevado({});
+        arrayElevado([]);
+        arrayElevado([2,5,6,"22"]);
+        arrayElevado([2,4,5,{}]);
+        arrayElevado([2,4,6,8,5]);    
+ */
+
 
 
 
@@ -32,13 +53,86 @@
         // 22) Programa una función que dado un array devuelva el número mas alto y el más bajo 
         // de dicho array, pe. miFuncion([1, 4, 5, 99, -60]) devolverá [99, -60].
         // SOLUCION HENRY:
-        const numAltoBajo = (array)=>{
+    /*     const numAltoBajo = (array)=>{
             
+            let numeroMenor = [];
+            numeroMenor.push(Math.max(...array));
+            numeroMenor.push(Math.min(...array));
+
+            return console.log(numeroMenor);
+        } */
+
+        // SOLUCION JON MIRCHA:
+        const numAltoBajo = (arr = undefined) => {
+            if(arr === undefined) return console.warn("No ingresaste ningun valor");
+            if(!(arr instanceof Array)) return console.error("El valor que ingresaste no es un arreglo");
+            if(arr.length === 0) return  console.error("El arreglo esta vacio");
+            
+            for (const num of arr) {
+                if(typeof num !== "number") return console.error(`El valor ${num} NO es un número`);
+            }
+
+        return console.info(`El arreglo Original: ${arr}\nValor máximo: ${Math.max(...arr)}\nValor mínimo: ${Math.min(...arr)}`);
+
         }
 
+/*         numAltoBajo();
+        numAltoBajo(false);
+        numAltoBajo([]);
+        numAltoBajo({});
+        numAltoBajo([2,3,4,5,"22"]);
+        numAltoBajo([1, 4, 5, 99, -60])
+        numAltoBajo([1,4,7,99,-60,200, 1000, -567, 999]);
+ */
+
+
+
+
+
+        
         // 23) Programa una función que dado un array de números devuelva un objeto con 2 arreglos
         // en el primero almacena los números pares y en el segundo los impares, pe. 
         // miFuncion([1,2,3,4,5,6,7,8,9,0]) devolverá {pares: [2,4,6,8,0], impares: [1,3,5,7,9]}.
+        
+        // SOLUCION HENRY:
+/*         const paresImpares = (arreglo) =>{
+            let miObjeto = {
+                pares: [],
+                impares: []
+            }
+            for (let i = 0; i < arreglo.length; i++){
+                if(arreglo[i] % 2 === 0){
+                    miObjeto.pares.push(arreglo[i]);
+                }else{
+                    miObjeto.impares.push(arreglo[i]);
+                }
+            }
+            console.log(miObjeto);
+        } */
+
+
+        // SOLUCION JON MIRCHA:
+        const paresImpares = (arr = undefined) =>{
+            if(arr === undefined) return console.warn("No ingresaste ningun valor");
+            if(!(arr instanceof Array)) return console.error("El valor que ingresaste no es un arreglo");
+            if(arr.length === 0) return  console.error("El arreglo esta vacio");
+            
+            for (const num of arr) {
+                if(typeof num !== "number") return console.error(`El valor ${num} NO es un número`);
+            }
+
+            return console.info({
+                pares: arr.filter(num => num % 2 === 0),
+                impares: arr.filter(num => num % 2 !== 0)
+            })
+        }
+
+        paresImpares();
+        paresImpares("array");
+        paresImpares([]);
+        paresImpares([2,4,5,7,3,"1"]);
+        paresImpares([1,2,3,4,5,6,7,8,9,0]);
+        paresImpares([34,25,45,46,12,11,13,17,15,2,4,6]);
     </script>
 </body>
 </html>
