@@ -11,25 +11,178 @@
     <script>
 /* 27) Programa una clase llamada Pelicula.
 
-La clase recibirá un objeto al momento de instanciarse con los siguentes datos: id de la película en IMDB, titulo, director, año de estreno, país o países de origen, géneros y calificación en IMBD.
-- Todos los datos del objeto son obligatorios.
-- Valida que el id IMDB tenga 9 caracteres, los primeros 2 sean letras y los 7 restantes números.
-- Valida que el título no rebase los 100 caracteres.
-- Valida que el director no rebase los 50 caracteres.
-- Valida que el año de estreno sea un número entero de 4 dígitos.
-- Valida que el país o paises sea introducidos en forma de arreglo.
-- Valida que los géneros sean introducidos en forma de arreglo.
-- Valida que los géneros introducidos esten dentro de los géneros aceptados*.
-- Crea un método estático que devuelva los géneros aceptados*.
-- Valida que la calificación sea un número entre 0 y 10 pudiendo ser decimal de una posición.
-- Crea un método que devuelva toda la ficha técnica de la película.
-- Apartir de un arreglo con la información de 3 películas genera 3 instancias de la clase de forma automatizada e imprime la ficha técnica de cada película.
+La clase recibirá un objeto al momento de instanciarse con los siguentes datos: id de la 
+película en IMDB, titulo, director, año de estreno, país o países de origen, géneros y 
+calificación en IMDB.
 
-* Géneros Aceptados: Action, Adult, Adventure, Animation, Biography, Comedy, Crime, Documentary ,Drama, Family, Fantasy, Film Noir, Game-Show, History, Horror, Musical, Music, Mystery, News, Reality-TV, Romance, Sci-Fi, Short, Sport, Talk-Show, Thriller, War, Western.
++ Todos los datos del objeto son obligatorios.
++ Valida que el id IMDB tenga 9 caracteres, los primeros 2 sean letras y los 7 restantes números.
++ Valida que el título no rebase los 100 caracteres.
++ Valida que el director no rebase los 50 caracteres.
++ Valida que el año de estreno sea un número entero de 4 dígitos.
++ Valida que el país o paises sea introducidos en forma de arreglo.
++ Valida que los géneros sean introducidos en forma de arreglo.
++ Valida que los géneros introducidos esten dentro de los géneros aceptados*.
++ Crea un método estático que devuelva los géneros aceptados*.
++ Valida que la calificación sea un número entre 0 y 10 pudiendo ser decimal de una posición.
++ Crea un método que devuelva toda la ficha técnica de la película.
+
+
+- Apartir de un arreglo con la información de 3 películas genera 3 instancias de la clase de 
+forma automatizada e imprime la ficha técnica de cada película.
+
+* Géneros Aceptados: Action, Adult, Adventure, Animation, Biography, Comedy, Crime, Documentary
+ ,Drama, Family, Fantasy, Film Noir, Game-Show, History, Horror, Musical, Music, Mystery, News,
+  Reality-TV, Romance, Sci-Fi, Short, Sport, Talk-Show, Thriller, War, Western.
      */
-
+ 
      // SOLUCION HENRY:
-        
+        class Pelicula { 
+            constructor({id, titulo, director, anioEstreno, paisOrigen, genero, calificacion}) {
+                
+                this.id = id,
+                this.titulo = titulo,
+                this.director = director;
+                this.anioEstreno = anioEstreno;
+                this.paisOrigen = paisOrigen;
+                this.genero = genero;
+                this.calificacion = calificacion;
+
+                //aqui se llaman a los metodos para que validen:
+                this.validadIMDB(this.id);
+                this.validarTitulo(this.titulo);
+                this.validarDirector(this.director);
+                this.validarAnio(this.anioEstreno);
+                this.validarPaises(this.paisOrigen);
+                this.validarGeneros(this.genero);
+                this.validarCalificacion(this.calificacion);
+            }
+
+            //METODOS GENERICOS:
+            static get listaGeneros(){
+                return ["Action", "Adult", "Adventure", "Animation", "Biography", "Comedy", "Crime", "Documentary", "Drama", 
+                        "Family", "Fantasy", "Film Noir", "Game-Show", "History", "Horror", "Musical", "Music", "Mystery",
+                        "News", "Reality-TV", "Romance", "Sci-Fi", "Short", "Sport", "Talk-Show", "Thriller", "War", "Western"];
+            }
+
+            static generosAceptados(){
+                return console.info(`Los géneros aceptados son: ${Pelicula.listaGeneros.join(",")}`);
+            }
+
+            validarCadena(propiedad, valor){
+                if(!valor) return console.warn(`${propiedad} "${valor}" esta vacio`);
+                if(typeof valor !== "string") return console.error(`${propiedad} "${valor}"ingresado, no es una cadena de texto`);
+                return true;
+            }
+
+            validadLongitudCadena(propiedad, valor, longitud){
+                if(valor.length > longitud) return console.error(`${propiedad} "${valor}" excede el numero de caracteres permitidos (${longitud}).`);
+                return true;
+            }
+            
+            validarNumero(propiedad, valor){
+                if(!valor) return console.warn(`${propiedad} "${valor}" esta vacio`);
+                if(typeof valor !== "number") return console.error(`${propiedad} "${valor}"ingresado, no es un número`);
+                return true;
+            }
+
+            validarArreglo(propiedad, valor){
+                if(!valor) return console.warn(`${propiedad} "${valor}" esta vacio`);
+                if(!(valor instanceof Array)) return console.error(`${propiedad} "${valor}" ingresado no es un arreglo`);
+                if(valor.length === 0) return console.error(`${propiedad} "${valor}" no tiene datos`);
+                for(let cadena of valor){
+                    if(typeof cadena !== "string") return console.error(`El valor "${cadena}" ingresado, NO es una cadena de texto`);
+                }
+                return true;
+            }
+
+            //METODOS ESPECIFICOS:
+            validadIMDB(id){
+                if(this.validarCadena("IMDB id", id));
+                if(!(/^([a-z]){2}([0-9]){7}$/.test(id)))
+                return console.error(`IMDB id "${id}" no es válido. Debe tener 9 caracteres, los 2 primeros letras minúsculas, los restantes números`);
+            }
+
+            validarTitulo(titulo){
+                if(this.validarCadena("Titulo", titulo));
+                if(this.validadLongitudCadena("Titulo", titulo, 100));
+                
+            }
+
+            validarDirector(director){
+                if(this.validarCadena("Director", director));
+                if(this.validadLongitudCadena("Director", director, 50));
+                
+            }
+
+            validarAnio(anioEstreno){
+                if(this.validarNumero("Año de Estreno", anioEstreno));
+                if(!(/^([0-9]){4}$/.test(anioEstreno)))
+                return console.error(`Año de estreno "${anioEstreno}" no es valido. Debe tener 4 digitos enteros.`);
+            }
+
+            validarPaises(paisOrigen){
+                if(this.validarArreglo("Paises", paisOrigen));
+            }
+
+            validarGeneros(genero){
+                if(this.validarArreglo("Generos", genero)){
+                    for(let elemento of genero){
+                        if(!Pelicula.listaGeneros.includes(elemento)){
+                            console.error(`Genero(s) incorrectos "${genero.join(",")}"`);
+                            Pelicula.generosAceptados();
+                        }
+                    }
+                };
+            }
+            
+            validarCalificacion(calificacion){
+                if(this.validarNumero("Calificacion", calificacion));
+                return (calificacion < 0 || calificacion >10)
+                ? console.error("La calificación tiene que ser en un rango entre 0 y 10")
+                : this.calificacion = calificacion.toFixed(1);
+            }
+
+            fichaTecnica(){
+                console.info(`Ficha Técnica:\nTítulo:"${this.titulo}"\nDirector:"${this.director}"\nAño:"${this.anioEstreno}"\nPaís:"${this.paisOrigen.join("-")}"\nGéneros:"${this.genero.join(",")}"\nCalificación:"${this.calificacion}"\nIMDB id:"${this.id}"`);
+            }
+        }
+/*         const pelicula1 = new Pelicula("wa2423442", "Terminator", "Stiven Spilverg", 2001,["Alemania", "Inglaterra"],["Action", "Comedy"], 7.478);
+        console.log(pelicula1);
+        pelicula1.fichaTecnica(); */
+
+        const misPeliculas = [
+            {
+                id: "tt7364773",
+                titulo: "Into the Wild",
+                director:"Sean Penn",
+                anioEstreno: 2007,
+                paisOrigen: ["USA"],
+                genero:["Adventure","Biography","Drama"],
+                calificacion: 8.1
+            },
+            {
+                id: "tt7363423",
+                titulo: "Rocky Balboa",
+                director:"Sylvester Stallone",
+                anioEstreno: 2006,
+                paisOrigen: ["USA"],
+                genero:["Action","Drama", "Sport"],
+                calificacion: 7.1
+            },
+            {
+                id: "tt7364542",
+                titulo: "The Dark Knight",
+                director:"Christopher Nolan",
+                anioEstreno: 2008,
+                paisOrigen: ["USA", "UK"],
+                genero:["Action","Crime","Drama"],
+                calificacion: 9.0
+            },
+
+        ]
+            
+        misPeliculas.forEach(el => new Pelicula(el).fichaTecnica());
     </script>
 </body>
 </html>
